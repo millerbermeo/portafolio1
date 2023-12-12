@@ -30,8 +30,8 @@ btnGraficar.addEventListener("click", () => {
       <div>${index} <i class="fa-solid fa-star"></i> ${porcentaje} %</div>
     </div>
     
-    <div style="width: 200px; height: 50px; display: flex; justify-content: flex-start; margin-bottom: 20px">
-      <div style="width: ${porcentaje}%; background-color: ${color}; height: 50px;"></div>
+    <div class="percentage-bar-container" style="width: 200px; height: 50px; display: flex; justify-content: flex-start; margin-bottom: 20px; transition: all 500ms;">
+      <div class="percentage-bar" style="width: 0%; background-color: ${color}; height: 50px; transition: all 500ms;"></div>
     </div>
   `;
   
@@ -42,5 +42,15 @@ btnGraficar.addEventListener("click", () => {
     ${generateRatingElement(4, porcentaje4, 'purple')}
     ${generateRatingElement(5, porcentaje5, 'orange')}
   `;
+  
+  // Triggering the transitions for all percentage bars after a short delay
+  setTimeout(() => {
+    document.querySelectorAll('.percentage-bar').forEach((bar, index) => {
+      const porcentaje = [porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5][index];
+      bar.style.width = `${porcentaje}%`;
+    });
+  }, 100);
+  
+  
   
 })
